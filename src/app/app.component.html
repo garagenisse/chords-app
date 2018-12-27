@@ -1,5 +1,11 @@
-<ul class="set"  (click)="onClickMe()">
-	<li class="white a2">A</li>
+<ul class="set"  (click)="onNextChord()">
+
+	<ng-container *ngFor="let note of notes">
+		<li [className]="note.colorClass()" ><br/>
+		<!-- <input type="checkbox" name="key" [checked]="key.selected" >{{key.description}}<br/> -->
+	</ng-container>       
+
+	<!-- <li class="white a2">A</li>
 	<li class="black bb2"></li>
 	<li class="white b2">B</li>
 	<li class="white c3">C</li>
@@ -26,7 +32,7 @@
 	<li class="white a4">A</li>
 	<li class="black bb4"></li>
 	<li class="white b4">B</li>
-	<li class="white c5">C</li>
+	<li class="white c5">C</li> -->
 
 </ul>
 <div id="options">
