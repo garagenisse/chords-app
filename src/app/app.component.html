@@ -1,4 +1,4 @@
-<ul class="set">
+<ul class="set"  (click)="onClickMe()">
 	<li class="white a2">A</li>
 	<li class="black bb2"></li>
 	<li class="white b2">B</li>
@@ -29,44 +29,22 @@
 	<li class="white c5">C</li>
 
 </ul>
-	<div id="play" onclick="play()">Chord !!! Hit me...
-	</div>
+<div id="options">
+	<p>Options</p>
+	<form>
+		<fieldset style="float: left;">
+		<legend>Keys</legend>
+		<ng-container *ngFor="let key of keys">
+			<input type="checkbox" [(ngModel)]="key.selected" [ngModelOptions]="{standalone: true}">{{key.description}}<br/>
+			<!-- <input type="checkbox" name="key" [checked]="key.selected" >{{key.description}}<br/> -->
+		</ng-container>       
+		</fieldset>
 
-  <div id="options">
-		<p>Options</p>
-		<form>
-			<fieldset style="float: left;">
-        <legend>Keys</legend>
-        <div *ngFor="let key of keys">
-          <input type="checkbox" namne="key" value="{{key.name}}"><br/>
-        </div>
-        
-				<!-- <input type="checkbox" name="key" value="c" checked>C<br>
-				<input type="checkbox" name="key" value="cs">C#<br>
-				<input type="checkbox" name="key" value="d">D<br />
-				<input type="checkbox" name="key" value="ds">D#<br />
-				<input type="checkbox" name="key" value="e">E<br />
-				<input type="checkbox" name="key" value="f" checked>F<br />
-				<input type="checkbox" name="key" value="fs">F#<br />
-				<input type="checkbox" name="key" value="g" checked>G<br />
-				<input type="checkbox" name="key" value="gs">G#<br />
-				<input type="checkbox" name="key" value="a">A<br />
-				<input type="checkbox" name="key" value="as">A#<br />
-				<input type="checkbox" name="key" value="b">B<br /> -->
-			</fieldset>
-			<fieldset style="float: left;">
-				<legend>Practice chords</legend>
-				<input type="checkbox" name="chord" value="major" checked>Major<br>
-				<input type="checkbox" name="chord" value="minor" checked>Minor<br>
-				<input type="checkbox" name="chord" value="seventh">7th<br>
-				<input type="checkbox" name="chord" value="majorseventh">Major 7th<br>
-				<input type="checkbox" name="chord" value="minormajorseventh">Minor Major 7th<br />
-				<input type="checkbox" name="chord" value="minorseventh">Minor 7th<br />
-			</fieldset>
-			<!--<fieldset style="float: left;">
-				<legend>Apply settings</legend>
-				<button type="submit">Ok</button>
-			</fieldset>-->
-
-		</form>
-	</div>
+		<fieldset style="float: left;">
+			<legend>Practice chords</legend>
+			<ng-container *ngFor="let chord of chords">
+				<input type="checkbox"[(ngModel)]="chord.selected" [ngModelOptions]="{standalone: true}">{{chord.description}}<br/>
+			</ng-container>       
+		</fieldset>
+	</form>
+</div>
