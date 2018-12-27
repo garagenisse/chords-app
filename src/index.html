@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ChordsApp</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <app-root>
+    <ul class="set">
+      <li class="white a2">A</li>
+      <li class="black bb2"></li>
+      <li class="white b2">B</li>
+      <li class="white c3">C</li>
+      <li class="black db3"></li>
+      <li class="white d3">D</li>
+      <li class="black eb3"></li>
+      <li class="white e3">E</li>
+      <li class="white f3">F</li>
+      <li class="black gb3"></li>
+      <li class="white g3">G</li>
+      <li class="black ab3"></li>
+      <li class="white a3">A</li>
+      <li class="black bb3"></li>
+      <li class="white b3">B</li>
+      <li class="white c4">C</li>
+      <li class="black db4"></li>
+      <li class="white d4">D</li>
+      <li class="black eb4"></li>
+      <li class="white e4">E</li>
+      <li class="white f4">F</li>
+      <li class="black gb4"></li>
+      <li class="white g4">G</li>
+      <li class="black ab4"></li>
+      <li class="white a4">A</li>
+      <li class="black bb4"></li>
+      <li class="white b4">B</li>
+      <li class="white c5">C</li>
+    
+      <!--<li class="white o1 c">C</li>
+      <li class="black o1 cs">C#</li>
+      <li class="white o1 d">D</li>
+      <li class="black o1 ds">D#</li>
+      <li class="white o1 e">E</li>
+      <li class="white o1 f">F</li>
+      <li class="black o1 fs">F#</li>
+      <li class="white o1 g">G</li>
+      <li class="black o1 gs">G#</li>
+      <li class="white o1 a">A</li>
+      <li class="black o1 as">A#</li>
+      <li class="white o1 b">B</li>
+      <li class="white o2 c">C</li>
+      <li class="black o2 cs">C#</li>
+      <li class="white o2 d">D</li>
+      <li class="black o2 ds">D#</li>
+      <li class="white o2 e">E</li>
+      <li class="white o2 f">F</li>
+      <li class="black o2 fs">F#</li>
+      <li class="white o2 g">G</li>
+      <li class="black o2 gs">G#</li>
+      <li class="white o2 a">A</li>
+      <li class="black o2 as">A#</li>
+      <li class="white o2 b">B</li>-->
+    </ul>
+      <div id="play" onclick="play()">Chord !!! Hit me...
+        <!--<button id="playbutton" type="button" onclick="play()">
+          <span id="buttontext">Chord time!!! Hit me...</span>
+        </button>-->
+      </div>
+      <div id="options">
+        <p>Options</p>
+        <form onsubmit="settingsChange();">
+          <fieldset style="float: left;">
+            <legend>Keys</legend>
+            <input type="checkbox" name="key" value="c" checked>C<br>
+            <input type="checkbox" name="key" value="cs">C#<br>
+            <input type="checkbox" name="key" value="d">D<br />
+            <input type="checkbox" name="key" value="ds">D#<br />
+            <input type="checkbox" name="key" value="e">E<br />
+            <input type="checkbox" name="key" value="f" checked>F<br />
+            <input type="checkbox" name="key" value="fs">F#<br />
+            <input type="checkbox" name="key" value="g" checked>G<br />
+            <input type="checkbox" name="key" value="gs">G#<br />
+            <input type="checkbox" name="key" value="a">A<br />
+            <input type="checkbox" name="key" value="as">A#<br />
+            <input type="checkbox" name="key" value="b">B<br />
+          </fieldset>
+          <fieldset style="float: left;">
+            <legend>Practice chords</legend>
+            <input type="checkbox" name="chord" value="major" checked>Major<br>
+            <input type="checkbox" name="chord" value="minor" checked>Minor<br>
+            <input type="checkbox" name="chord" value="seventh">7th<br>
+            <input type="checkbox" name="chord" value="majorseventh">Major 7th<br>
+            <input type="checkbox" name="chord" value="minormajorseventh">Minor Major 7th<br />
+            <input type="checkbox" name="chord" value="minorseventh">Minor 7th<br />
+          </fieldset>
+          <!--<fieldset style="float: left;">
+            <legend>Apply settings</legend>
+            <button type="submit">Ok</button>
+          </fieldset>-->
+    
+        </form>
+      </div>
+  </app-root>
+</body>
+</html>
