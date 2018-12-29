@@ -16,6 +16,9 @@ export class AppComponent implements OnInit {
   keys: Key[] = [];
   chords: Chord[] = [];
   notes: Note[] = [];
+  currentChord = null;
+  currentKey = null;
+
   constructor() {
 
     this.notes = new Array<Note>(
@@ -84,7 +87,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(){
-
+    this.onNextChord();
   }
 
   onNextChord() {
@@ -95,20 +98,22 @@ export class AppComponent implements OnInit {
     var randomKey = Math.floor(Math.random() * selectedKeys.length);
     var randomChord = Math.floor(Math.random() * selectedChords.length);
 
-    var key = selectedKeys[randomKey];
-    var chord = selectedChords[randomChord];
+    this.currentKey = selectedKeys[randomKey];
+    this.currentChord = selectedChords[randomChord];
 
-    console.log("Random chord: " + key.description + " " + chord.description);
+    console.log("Random chord: " + this.currentKey.description + " " + this.currentChord.description);
 
     // Reset keyboard classes
     this.notes.forEach(n => {n.play = false; n.key = false;});
 
     // Assign new classes
-    var baseindex = this.notes.findIndex( n => n.name == key.base);
+    var baseindex = this.notes.findIndex( n => n.name == this.currentKey.base);
     this.notes[baseindex].key = true;
-    chord.keys.forEach( c => {
+    this.currentChord.keys.forEach( c => {
       this.notes[baseindex + c].play = true;
     })
+    this.notes[baseindex].key = true;
+
 
 
   }

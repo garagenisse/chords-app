@@ -11,7 +11,16 @@ export class Note {
         this.key = key;
     }
 
+
+    playClass(){
+        return this.play ? "play" : "";
+    }
+
+    isKeyClass() {
+        return this.key ? "key": "";
+    }
+
     colorClass(){
-        return (this.description.indexOf('#') != -1) ? ("black " + this.name + (this.play ? " play" : ""))  : ("white " + this.name + (this.play ? " play" : ""));
+        return (this.description.indexOf('#') != -1) ? "black " + this.name : "white " + this.name;
     }
   }

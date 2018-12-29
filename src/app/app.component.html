@@ -1,56 +1,45 @@
-<ul class="set"  (click)="onNextChord()">
+<div class="container-fluid">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<a class="navbar-brand" href="#">Chords</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+		 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-	<ng-container *ngFor="let note of notes">
-		<li [className]="note.colorClass()" ><br/>
-		<!-- <input type="checkbox" name="key" [checked]="key.selected" >{{key.description}}<br/> -->
-	</ng-container>       
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">Settings <span class="sr-only">(current)</span></a>
+				</li>
+			</ul>
+		</div>
+	</nav>
 
-	<!-- <li class="white a2">A</li>
-	<li class="black bb2"></li>
-	<li class="white b2">B</li>
-	<li class="white c3">C</li>
-	<li class="black db3"></li>
-	<li class="white d3">D</li>
-	<li class="black eb3"></li>
-	<li class="white e3">E</li>
-	<li class="white f3">F</li>
-	<li class="black gb3"></li>
-	<li class="white g3">G</li>
-	<li class="black ab3"></li>
-	<li class="white a3">A</li>
-	<li class="black bb3"></li>
-	<li class="white b3">B</li>
-	<li class="white c4">C</li>
-	<li class="black db4"></li>
-	<li class="white d4">D</li>
-	<li class="black eb4"></li>
-	<li class="white e4">E</li>
-	<li class="white f4">F</li>
-	<li class="black gb4"></li>
-	<li class="white g4">G</li>
-	<li class="black ab4"></li>
-	<li class="white a4">A</li>
-	<li class="black bb4"></li>
-	<li class="white b4">B</li>
-	<li class="white c5">C</li> -->
+	<ul class="set keyboard" (click)="onNextChord()">
 
-</ul>
-<div id="options">
-	<p>Options</p>
-	<form>
-		<fieldset style="float: left;">
-		<legend>Keys</legend>
-		<ng-container *ngFor="let key of keys">
-			<input type="checkbox" [(ngModel)]="key.selected" [ngModelOptions]="{standalone: true}">{{key.description}}<br/>
-			<!-- <input type="checkbox" name="key" [checked]="key.selected" >{{key.description}}<br/> -->
-		</ng-container>       
-		</fieldset>
+		<ng-container *ngFor="let note of notes">
+			<li [ngClass]="{key: note.key, play: note.play}" [className]="note.colorClass()"><br />
+		</ng-container>
 
-		<fieldset style="float: left;">
-			<legend>Practice chords</legend>
-			<ng-container *ngFor="let chord of chords">
-				<input type="checkbox"[(ngModel)]="chord.selected" [ngModelOptions]="{standalone: true}">{{chord.description}}<br/>
-			</ng-container>       
-		</fieldset>
-	</form>
+	</ul>
+	<div id="options">
+		<h1>Chord is: {{currentKey.description + " " + currentChord.description}}</h1>
+		<p>Options</p>
+		<form>
+			<fieldset style="float: left;">
+				<legend>Keys</legend>
+				<ng-container *ngFor="let key of keys">
+					<input type="checkbox" [(ngModel)]="key.selected" [ngModelOptions]="{standalone: true}">{{key.description}}<br />
+					<!-- <input type="checkbox" name="key" [checked]="key.selected" >{{key.description}}<br/> -->
+				</ng-container>
+			</fieldset>
+
+			<fieldset style="float: left;">
+				<legend>Practice chords</legend>
+				<ng-container *ngFor="let chord of chords">
+					<input type="checkbox" [(ngModel)]="chord.selected" [ngModelOptions]="{standalone: true}">{{chord.description}}<br />
+				</ng-container>
+			</fieldset>
+		</form>
+	</div>
 </div>
