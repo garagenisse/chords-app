@@ -35,7 +35,9 @@
 			<fieldset style="float: left;">
 				<legend>Practice chords</legend>
 				<ng-container *ngFor="let chord of chords">
-					<input type="checkbox" [(ngModel)]="chord.selected" [ngModelOptions]="{standalone: true}">{{chord.description}}<br />
+					<input type="checkbox" [(ngModel)]="chord.selected" [ngModelOptions]="{standalone: true}">{{chord.description}}
+					<input type="checkbox" [(ngModel)]="chord.inversions" [ngModelOptions]="{standalone: true}">Inversions
+					<br />
 				</ng-container>
 			</fieldset>
 		</form>

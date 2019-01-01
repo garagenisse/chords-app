@@ -4,6 +4,7 @@ import { Chord } from './chord';
 import { Note } from './note';
 import { KeyRegistry } from '@angular/core/src/di/reflective_key';
 import { notStrictEqual } from 'assert';
+import { nextContext } from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +13,12 @@ import { notStrictEqual } from 'assert';
 })
 export class AppComponent implements OnInit {
   
-  title = 'Chords - Piano chords practice (garagenisse)';
+  title: String = 'Chords - Piano chords practice (garagenisse)';
   keys: Key[] = [];
   chords: Chord[] = [];
   notes: Note[] = [];
-  currentChord = null;
-  currentKey = null;
+  currentChord: Chord = null;
+  currentKey: Key = null;
 
   constructor() {
 
@@ -79,12 +80,12 @@ export class AppComponent implements OnInit {
         new Chord("Dim", "Diminished chord", true,  [0,3,6]),
         new Chord("Aug", "Augmented fifth chord", true,  [0,4,8]),
 
-        // // Four note chords
-        // new Chord("Dominant seventh", "Major chord", true, [0,4,7,10]),
-        // new Chord("Minor seventh", "Minor chord", true,  [0,3,7,10]),
+        // Four note chords
+        new Chord("7", "Dominant seventh chord", true, [0,4,7,10]),
+        new Chord("m7", "Minor seventh chord", true,  [0,3,7,10]),
         
       )
-  }
+    }
 
   ngOnInit(){
     this.onNextChord();
@@ -95,17 +96,24 @@ export class AppComponent implements OnInit {
     // Hit kommer man alltid när nåt ändras eller när man klickar på klaviaturen, då genereras ett nytt slumpvärde för Key och Chord sen triggar det allt annat typ...
     var selectedKeys = this.keys.filter(k => k.selected);
     var selectedChords = this.chords.filter(c => c.selected);
-    var randomKey = Math.floor(Math.random() * selectedKeys.length);
-    var randomChord = Math.floor(Math.random() * selectedChords.length);
 
-    this.currentKey = selectedKeys[randomKey];
-    this.currentChord = selectedChords[randomChord];
+    // Avoid same chord if possible
+    let i = 10;
+    do{
+      var randomKeyIX = Math.floor(Math.random() * selectedKeys.length);
+      var randomChordIX = Math.floor(Math.random() * selectedChords.length);
+    }
+    while(this.currentChord != null && i-->0 && this.currentChord.name === selectedChords[randomChordIX].name) 
+
+    this.currentKey = selectedKeys[randomKeyIX];
+    this.currentChord = selectedChords[randomChordIX];
 
     console.log("Random chord: " + this.currentKey.description + " " + this.currentChord.description);
 
     // Reset keyboard classes
     this.notes.forEach(n => {n.play = false; n.key = false;});
 
+    let playinversion = this.currentChord.inversions
     // Assign new classes
     var baseindex = this.notes.findIndex( n => n.name == this.currentKey.base);
     this.notes[baseindex].key = true;
