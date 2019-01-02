@@ -1,18 +1,21 @@
 <div class="container-fluid">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		<a class="navbar-brand" href="#">Chords</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+		<a class="navbar-brand" href="#">
+				<img style="-webkit-filter: invert(100%)" src="assets/img/logo.png">
+		</a>
+		<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 		 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
-		</button>
+		</button> -->
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item active">
-					<a class="nav-link" href="#">Settings <span class="sr-only">(current)</span></a>
+					<button class="btn btn-sm btn-outline-success" (click)="openSettings(content)">Chord settings</button>
+					<!-- <a class="nav-link" href="#">Settings <span class="sr-only">(current)</span></a> -->
 				</li>
 			</ul>
-		</div>
+		<!-- </div> -->
 	</nav>
 	<ul class="set keyboard" (click)="onNextChord()">
 		<ng-container *ngFor="let note of notes">
@@ -22,24 +25,66 @@
 	</ul>
 	<div id="options">
 		<h1 class="text-center">{{currentKey.description}}{{currentChord.name}} ({{currentChord.description}})</h1>
-		<p>Options</p>
-		<form>
-			<fieldset style="float: left;">
-				<legend>Keys</legend>
-				<ng-container *ngFor="let key of keys">
-					<input type="checkbox" [(ngModel)]="key.selected" [ngModelOptions]="{standalone: true}">{{key.description}}<br />
-					<!-- <input type="checkbox" name="key" [checked]="key.selected" >{{key.description}}<br/> -->
-				</ng-container>
-			</fieldset>
-
-			<fieldset style="float: left;">
-				<legend>Practice chords</legend>
-				<ng-container *ngFor="let chord of chords">
-					<input type="checkbox" [(ngModel)]="chord.selected" [ngModelOptions]="{standalone: true}">{{chord.description}}
-					<input type="checkbox" [(ngModel)]="chord.inversions" [ngModelOptions]="{standalone: true}">Inversions
-					<br />
-				</ng-container>
-			</fieldset>
-		</form>
 	</div>
+
+	<ng-template #content let-modal>
+		<div class="modal-header">
+			<h4 class="modal-title" id="modal-basic-title">Chord settings</h4>
+		</div>
+		<div class="modal-body">
+			<form>
+				<fieldset style="float: left;">
+					<legend>Keys</legend>
+					<div class="btn-group btn-group-toggle">
+						<ng-container *ngFor="let key of keys">
+							<label class="btn-success" ngbButtonLabel>
+								<input type="checkbox" ngbButton [(ngModel)]="key.selected" [ngModelOptions]="{standalone: true}">{{key.description}}
+							</label>
+						</ng-container>
+					</div>
+				</fieldset>
+				<br/>
+				<fieldset style="float: left;">
+					<legend>Chords</legend>
+					<table class="table table-sm table-hover">
+						<thead class="thead-dark">
+							<tr>
+								<th><input type="checkbox" (change)="onToggleChord($event)"> Practice</th>
+								<th><input type="checkbox" (change)="onToggleInversions($event)"> Inversions</th>
+								<th>Chord</th>
+							</tr>
+						</thead>
+						<tbody>
+							<ng-container *ngFor="let chord of chords">
+								<tr>
+									<td class="text-center">
+										<input type="checkbox" [(ngModel)]="chord.selected" [ngModelOptions]="{standalone: true}">
+									</td>
+									<td class="text-center">
+										<input type="checkbox" [(ngModel)]="chord.inversions" [ngModelOptions]="{standalone: true}">
+									</td>
+									<td>{{chord.description}}</td>
+								</tr>
+							</ng-container>
+						</tbody>
+					</table>
+				</fieldset>
+			</form>
+			<!--<form>
+			<div class="form-group">
+			   <label for="dateOfBirth">Date of birth</label>
+			  <div class="input-group">
+				<input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+				<div class="input-group-append">
+				  <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+				</div>
+			  </div> 
+			</div>
+		  </form>-->
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+		</div>
+	</ng-template>
+
 </div>

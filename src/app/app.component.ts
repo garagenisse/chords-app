@@ -5,6 +5,7 @@ import { Note } from './note';
 import { KeyRegistry } from '@angular/core/src/di/reflective_key';
 import { notStrictEqual } from 'assert';
 import { nextContext } from '@angular/core/src/render3';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,8 @@ import { nextContext } from '@angular/core/src/render3';
 })
 export class AppComponent implements OnInit {
   
+  closeResult: string;
+
   title: String = 'Chords - Piano chords practice (garagenisse)';
   keys: Key[] = [];
   chords: Chord[] = [];
@@ -20,7 +23,7 @@ export class AppComponent implements OnInit {
   currentChord: Chord = null;
   currentKey: Key = null;
 
-  constructor() {
+  constructor(private modalService: NgbModal) {
 
     this.notes = new Array<Note>(
       new Note("a2","A",false,false),
@@ -73,8 +76,8 @@ export class AppComponent implements OnInit {
         new Chord("5", "Five chord", false, [0,7]),
 
         // Three note chords
-        new Chord("Major", "Major chord", true, [0,4,7]),
-        new Chord("Minor", "Minor chord", true,  [0,3,7]),
+        new Chord("", "Major chord", true, [0,4,7]),
+        new Chord("m", "Minor chord", true,  [0,3,7]),
         new Chord("Sus2", "Suspended second chord", true,  [0,2,7]),
         new Chord("Sus4", "Suspended fourth chord", true,  [0,5,7]),
         new Chord("Dim", "Diminished chord", true,  [0,3,6]),
@@ -83,7 +86,15 @@ export class AppComponent implements OnInit {
         // Four note chords
         new Chord("7", "Dominant seventh chord", true, [0,4,7,10]),
         new Chord("m7", "Minor seventh chord", true,  [0,3,7,10]),
-        
+        new Chord("maj7", "Major seventh chord", true,  [0,4,7,11]),
+        new Chord("6", "Major sixth chord", true,  [0,4,7,9]),
+        new Chord("m6", "Minor sixth chord", true,  [0,3,7,9]),
+
+        // Five note chords
+        new Chord("6add9", "Six add 9 chord", true, [0,4,7,9,14]),
+        new Chord("9", "Major ninth seventh chord", true, [0,4,7,10,14]),
+        new Chord("m9", "Minor ninth seventh chord", true, [0,3,7,10,14]),
+
       )
     }
 
@@ -91,6 +102,31 @@ export class AppComponent implements OnInit {
     this.onNextChord();
   }
 
+  onToggleInversions(evt) {
+    this.chords.forEach(n => n.inversions = evt.target.checked);
+  }
+
+  onToggleChord(evt) {
+    this.chords.forEach(n => n.selected = evt.target.checked);
+  }
+
+  openSettings(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
   onNextChord() {
     
     // Hit kommer man alltid när nåt ändras eller när man klickar på klaviaturen, då genereras ett nytt slumpvärde för Key och Chord sen triggar det allt annat typ...
@@ -110,7 +146,7 @@ export class AppComponent implements OnInit {
 
     console.log("Random chord: " + this.currentKey.description + " " + this.currentChord.description);
 
-    // Reset keyboard classes
+    // Reset keyboard classes 
     this.notes.forEach(n => {n.play = false; n.key = false;});
 
     let playinversion = this.currentChord.inversions
