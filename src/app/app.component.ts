@@ -60,13 +60,13 @@ export class AppComponent implements OnInit {
       new Key("bb","A#", false,"bb2"),
       new Key("b","B", false, "b2"),
       new Key("c","C", true, "c3"),
-      new Key("db","C#", true, "db3"),
+      new Key("db","C#", false, "db3"),
       new Key("d","D", false, "d3"),
       new Key("eb","D#", false, "eb3"),
       new Key("e","E", false, "e3"),
-      new Key("f","F", true, "f3"),
+      new Key("f","F", false, "f3"),
       new Key("gb","F#", false, "gb3"),
-      new Key("g","G", true, "g3"),
+      new Key("g","G", false, "g3"),
       new Key("ab","G#", false, "ab3"),
       );
 
@@ -87,13 +87,13 @@ export class AppComponent implements OnInit {
         new Chord("7", "Dominant seventh chord", true, [0,4,7,10]),
         new Chord("m7", "Minor seventh chord", true,  [0,3,7,10]),
         new Chord("maj7", "Major seventh chord", true,  [0,4,7,11]),
-        new Chord("6", "Major sixth chord", true,  [0,4,7,9]),
-        new Chord("m6", "Minor sixth chord", true,  [0,3,7,9]),
+        new Chord("6", "Major sixth chord", false,  [0,4,7,9]),
+        new Chord("m6", "Minor sixth chord", false,  [0,3,7,9]),
 
         // Five note chords
-        new Chord("6add9", "Six add 9 chord", true, [0,4,7,9,14]),
-        new Chord("9", "Major ninth seventh chord", true, [0,4,7,10,14]),
-        new Chord("m9", "Minor ninth seventh chord", true, [0,3,7,10,14]),
+        new Chord("6add9", "Six add 9 chord", false, [0,4,7,9,14]),
+        new Chord("9", "Major ninth seventh chord", false, [0,4,7,10,14]),
+        new Chord("m9", "Minor ninth seventh chord", false, [0,3,7,10,14]),
 
       )
     }

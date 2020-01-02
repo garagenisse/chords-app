@@ -12,15 +12,20 @@ export class Note {
     }
 
 
-    playClass(){
-        return this.play ? "play" : "";
-    }
+    // playClass(){
+    //     return this.play ? "play" : "";
+    // }
 
-    isKeyClass() {
-        return this.key ? "key": "";
-    }
+    // isKeyClass() {
+    //     return this.key ? "key": "";
+    // }
 
     colorClass(){
-        return (this.description.indexOf('#') != -1) ? "black " + this.name : "white " + this.name;
+		var classNames = (this.description.indexOf('#') != -1) ? "black " + this.name : "white " + this.name;
+		if(this.play) classNames += " play";
+		if(this.key) classNames += " key";
+
+		return classNames;
+        // return (this.description.indexOf('#') != -1) ? "black " + this.name : "white " + this.name;
     }
   }
