@@ -1,4 +1,4 @@
-/*!
+#container{display:block}@media only screen and (orientation:portrait){#container{height:100vw;transform:rotate(90deg)}}@media only screen and (orientation:landscape){#container{transform:rotate(0)}}/*!
  * Bootstrap v4.2.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
