@@ -89,7 +89,13 @@ ul.keyboard > li.black:active {
 		background: linear-gradient(left, #444 0%,#222 100%);
 	}
 
-ul.keyboard > li.b2, ul.keyboard > li.d3, ul.keyboard > li.e3, ul.keyboard > li.g3, ul.keyboard > li.a3, ul.keyboard > li.b3, ul.keyboard > li.d4, ul.keyboard > li.e4, ul.keyboard > li.g4, ul.keyboard > li.a4, ul.keyboard > li.b4{
+/* ul.keyboard > li.b2, ul.keyboard > li.d3, ul.keyboard > li.e3, ul.keyboard > li.g3, ul.keyboard > li.a3, ul.keyboard > li.b3, ul.keyboard > li.d4, ul.keyboard > li.e4, ul.keyboard > li.g4, ul.keyboard > li.a4, ul.keyboard > li.b4{
+	margin: 0 0 0 -1em;
+} */
+ /* ul.keyboard > li.d1, ul.keyboard > li.e1, ul.keyboard > li.g1, ul.keyboard > li.a2, ul.keyboard > li.b2 {
+	margin: 0 0 0 -1em;
+} */
+ul.keyboard > li.a0,ul.keyboard > li.b0,ul.keyboard > li.d1,ul.keyboard > li.e1,ul.keyboard > li.g1,ul.keyboard > li.a1,ul.keyboard > li.b1,ul.keyboard > li.d2,ul.keyboard > li.e2,ul.keyboard > li.g2,ul.keyboard > li.a2,ul.keyboard > li.b2 {
 	margin: 0 0 0 -1em;
 }
 /*

@@ -20,6 +20,7 @@
 	<ul class="set keyboard" (click)="onNextChord()">
 		<ng-container *ngFor="let note of notes">
 			<li [ngClass]="{key: note.key, play: note.play}" [className]="note.colorClass()">{{note.description}}</li>
+			<!-- <li [ngClass]="{key: note.key, play: note.play}" [className]="note.colorClass()">{{note.description}}</li> -->
 		</ng-container>
 
 	</ul>
